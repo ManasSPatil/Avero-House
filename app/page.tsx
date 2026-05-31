@@ -52,7 +52,7 @@ export default function Home() {
     name: "Grow With Gargee",
     niche: " Ed-Tech",
     followers: "63K+",
-    image: "/creators/gargee.png",
+    image: "/creators/Gargee.png",
       instagram: "https://www.instagram.com/grow.with.gargee/",
 
   },
@@ -692,7 +692,47 @@ items-center
           Recent Campaigns
         </h2>
 
-        <div
+        {/* MOBILE */}
+
+<div
+  className="
+  flex
+  md:hidden
+  gap-8
+  overflow-x-auto
+  pb-4
+  snap-x
+  snap-mandatory
+  "
+>
+  {campaigns.map((campaign) => (
+    <CampaignCard
+      key={campaign.brand}
+      creator={campaign.creator}
+      brand={campaign.brand}
+      date={campaign.date}
+      thumbnail={campaign.thumbnail}
+      reelUrl={campaign.reelUrl}
+    />
+  ))}
+</div>
+
+{/* DESKTOP */}
+
+<div className="hidden md:grid md:grid-cols-3 gap-8">
+  {desktopCampaigns.map((campaign) => (
+    <CampaignCard
+      key={campaign.brand}
+      creator={campaign.creator}
+      brand={campaign.brand}
+      date={campaign.date}
+      thumbnail={campaign.thumbnail}
+      reelUrl={campaign.reelUrl}
+    />
+  ))}
+</div>
+
+        {/* <div
           className="
   flex
   md:grid
@@ -717,7 +757,7 @@ items-center
   />
 ))}
 
-        </div>
+        </div> */}
 
         <div className="hidden md:flex justify-center mt-12">
   {campaigns.length > 6 && (
