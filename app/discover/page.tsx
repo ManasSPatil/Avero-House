@@ -39,7 +39,9 @@ async function loadCreators(): Promise<{creators: Creator[]; live: boolean; unav
     for (let offset = 0; ; offset += batch) {
       endpoint.searchParams.set("limit", String(batch));
       endpoint.searchParams.set("offset", String(offset));
-      const response = await fetch(endpoint, {headers: {apikey: key}, cache: "no-store"});
+      const headers: Record<string, string> = {apikey: key};
+      if (key.startsWith("eyJ")) headers.Authorization = `Bearer ${key}`;
+      const response = await fetch(endpoint, {headers, cache: "no-store"});
       if (!response.ok) throw new Error("Directory request failed");
       const page = await response.json() as PublicRow[];
       if (!Array.isArray(page)) throw new Error("Unexpected directory response");
