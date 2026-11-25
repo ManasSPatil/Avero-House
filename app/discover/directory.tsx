@@ -24,7 +24,7 @@ const ranges = [
 const categories = (niche: string) => niche.toLowerCase().split(/\s*[&,/]\s*/).map(x => x.trim()).filter(Boolean);
 const label = (s: string) => s.replace(/\b\w/g, x => x.toUpperCase());
 
-export default function Directory({ creators, live, unavailable, businessNumber }: {
+export default function Directory({ creators, unavailable, businessNumber }: {
   creators: Creator[]; live: boolean; unavailable: boolean; businessNumber: string | null;
 }) {
   const [query, setQuery] = useState("");
@@ -87,7 +87,7 @@ export default function Directory({ creators, live, unavailable, businessNumber 
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3 mt-4 text-sm text-zinc-400"><span aria-live="polite">{results.length} creators found</span><button className="underline underline-offset-4 hover:text-white" onClick={clear}>Clear filters</button></div>
         </div>
-        {!live && !unavailable && <p className="text-zinc-500 text-xs mt-4">Follower figures are from our existing public roster and may have changed. Location and language will be added once verified.</p>}
+        {!unavailable && <p className="text-zinc-500 text-xs mt-4">Follower figures are approximate and may have changed. Location and language are shown only when available.</p>}
         {unavailable && <p role="status" className="mt-6 text-zinc-400">The directory is temporarily unavailable. Please contact our team for creator recommendations.</p>}
       </section>
       <section className="max-w-7xl mx-auto px-5 md:px-6 pb-16">
